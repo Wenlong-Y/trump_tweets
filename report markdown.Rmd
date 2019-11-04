@@ -65,4 +65,7 @@ yearsourcepercentage <- full_join(yearsource,year) %>% mutate(npercentage = n/ny
 yearsourcepercentage %>% ggplot(aes(year,npercentage,color=as.character(source)))+geom_line(aes(year,npercentage))+geom_point() + scale_x_continuous(breaks=seq(2009,2019,2)) + ggtitle("Fig. 3. Trump tweeting device by year") + labs(color="Device") + ylab("Percentage") + xlab("Year")
 ```
 
-Seems that Trump was using web browsers only before 2012. At 2013, Trump started to use Android devices. Then he gradually shift from Android to Apple and phased out the web browser almost completely at 2019.
+Seems that Trump was using web browsers only before 2012. At 2013, Trump started to use Android devices. Then he gradually shift from Android to Apple and phased out the web browser almost completely at 2019. Trump started to tweet extensively since 2012. It seems the adoption of mobile device is to satisfy the demand of tweeting. A more detailed analysis by month for 2012 and 2013 may shed more light on this. For now, we want to shift our focus to what Trump tweeted.
+
+## Language used in Trump's tweet
+

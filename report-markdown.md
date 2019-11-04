@@ -35,4 +35,10 @@ Let us check which device Trump uses to tweet during these years.
 
 Seems that Trump was using web browsers only before 2012. At 2013, Trump
 started to use Android devices. Then he gradually shift from Android to
-Apple and phased out the web browser almost completely at 2019.
+Apple and phased out the web browser almost completely at 2019. Trump
+started to tweet extensively since 2012. It seems the adoption of mobile
+device is to satisfy the demand of tweeting. A more detailed analysis by
+month for 2012 and 2013 may shed more light on this. For now, we want to
+shift our focus to what Trump tweeted.
+
+## Language used in Trump’s tweet
