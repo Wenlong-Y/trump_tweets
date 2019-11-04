@@ -29,7 +29,10 @@ Now, let us check the number of tweets by year.
 
 ![](report-markdown_files/figure-gfm/trump%20tweet%20by%20year-1.png)<!-- -->
 
-We want to look into details about which device trump uses to tweet
-during these years.
+Let us check which device Trump uses to tweet during these years.
 
 ![](report-markdown_files/figure-gfm/plot%20the%20source%20by%20year-1.png)<!-- -->
+
+Seems that Trump was using web browsers only before 2012. At 2013, Trump
+started to use Android devices. Then he gradually shift from Android to
+Apple and phased out the web browser almost completely at 2019.
