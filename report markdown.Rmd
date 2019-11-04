@@ -2,7 +2,7 @@
 title: "Trump Tweet Habit Analysis"
 author: "Wenlong Yang"
 date: "11/3/2019"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
