@@ -53,3 +53,20 @@ how it evolve with time.
 
 ![alt
 text](https://raw.githubusercontent.com/Wenlong-Y/trump_tweets/master/words_year.png)
+
+From the image above, we can see how Trump transistion from a business
+oriented to a political figure. In 2009, Trump doesn’t tweet much. At
+2010, Trump was talking a lot about his TV show Apprentice and the
+channel NBC. He probably also talked a lot about Miss Universe or
+similar events. At 2011, Trump start to talk about President Obama. He
+continues to do so at 2012. He talked a lot about Mitt Romney, China. At
+2013, 2014, and 2015, he talks extensively about Obama, the country, and
+the people. When he is in presidential race, Trump talks most about
+Hillary Clinton, his opponent. After he won the election, Trump start to
+talk about his major proposals: Wall, job. Trump conitnued his criticism
+of the main stream media, and call them fake news media. In 2019, the
+trade war with China become one of the main topics of Trump.
+
+Continued analysis of the tweets of Trump and allow us to understand the
+priorities of the white house and how people respond to Trump’s
+policies.
