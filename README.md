@@ -1,1 +1,1 @@
-# Analyze tweet behavior of Donal Trump and the fav/retweet behaviors 
+# President is one of the branch in our government. The behavior of the president and its impacts deserve great public attention. President Trump use twitter as a major way to communicate with the public. I want to find out more about Trump from his tweets. I also want to find out public opinions on different issues based on public reactions to Trump's tweets.
