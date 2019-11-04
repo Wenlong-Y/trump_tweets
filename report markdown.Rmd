@@ -13,13 +13,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 President is one of the branch in our government. The behavior of the president and its impacts deserve great public attention. President Trump use twitter as a major way to communicate with the public. I want to find out more about Trump from his tweets. I also want to find out public opinions on different issues based on public reactions to Trump's tweets.
 
-The data was downloaded from a [website](http://http://www.trumptwitterarchive.com/data/realdonaldtrump/) created by Brendan Brown. I extracted all of Trump's tweets from 2009 to Nov. 3rd 2019 as the total data. The size of the data is about 9 Mb.
+The data was downloaded from a [website](http://www.trumptwitterarchive.com/data/realdonaldtrump/) created by Brendan Brown. I extracted all of Trump's tweets from 2009 to Nov. 3rd 2019 as the total data. The size of the data is about 9 Mb.
 
 ```{r import and save data, echo = FALSE, include = FALSE}
 library(tidyverse)
 library(ggplot2)
 library(lubridate)
 library(tidyr)
+library(tidytext)
 
 all_tweets <- as_tibble(read.csv("trump_tweets_20191103.csv", stringsAsFactors=FALSE))
 
@@ -65,7 +66,36 @@ yearsourcepercentage <- full_join(yearsource,year) %>% mutate(npercentage = n/ny
 yearsourcepercentage %>% ggplot(aes(year,npercentage,color=as.character(source)))+geom_line(aes(year,npercentage))+geom_point() + scale_x_continuous(breaks=seq(2009,2019,2)) + ggtitle("Fig. 3. Trump tweeting device by year") + labs(color="Device") + ylab("Percentage") + xlab("Year")
 ```
 
-Seems that Trump was using web browsers only before 2012. At 2013, Trump started to use Android devices. Then he gradually shift from Android to Apple and phased out the web browser almost completely at 2019. Trump started to tweet extensively since 2012. It seems the adoption of mobile device is to satisfy the demand of tweeting. A more detailed analysis by month for 2012 and 2013 may shed more light on this. For now, we want to shift our focus to what Trump tweeted.
+Seems that Trump was using web browsers only before 2012. At 2013, Trump started to use Android devices. Then he gradually shift from Android to Apple and phased out the web browser almost completely at 2019. Trump started to tweet extensively since 2012. It seems the adoption of mobile device is to satisfy the demand of tweeting. A more detailed analysis by month for 2012 and 2013 may shed more light on this. In the first year of Trump presidentcy, he seems has much less time tweeting then the previous year when he was on campaign trail. Trump tweeted more and more in the next two years of his presidency. It seems he is back on campaign mode. Let us stop here for the moment, we want to shift our focus to what Trump tweeted.
 
 ## Language used in Trump's tweet
+
+The language used in Trump tweet reflect what kind of message Trump want to convey to the public. We want to look into the language he uses and how it evolve with time. 
+
+```{r processing tweets, include=FALSE}
+#some of these codes are adapted from codes in EdX course of data science with R.
+
+pattern <- "([^A-Za-z\\d#@']|'(?![A-Za-z\\d#@]))"
+
+ttwords <- ttweets %>% 
+  mutate(text = str_replace_all(text, "https://t.co/[A-Za-z\\d]+|&amp;", ""))  %>%
+  unnest_tokens(word, text, token = "regex", pattern = pattern) %>%
+  filter(!word %in% stop_words$word & !word %in% c("http","rt", "@realdonaldtrump", "tinyurl", "pqpfvm", "www") & !str_detect(word, "^\\d+$")) %>%  mutate(word = str_replace(word, "^'", "")) 
+
+ttyearword <- ttwords %>% group_by(year,word) %>% summarize(n=n()) %>% arrange(desc(n), .by_group= TRUE) 
+
+ttyearwordtop <- ttyearword %>% top_n(10)
+
+ttyeartop <- ttyearwordtop %>% summarize(nword = sum(n))
+
+ttyearwordper <- full_join(ttyearwordtop,ttyeartop) %>% mutate(nper = n / nword)
+
+ttplot <- ttyearwordper %>% select(year,word,nper)
+
+#plots were made with the command pic2009 <- ttplot %>% filter(year == 2009) %>% ggplot(aes(nper, reorder(word,nper)), subset(year)) + geom_point(color="blue", size=2) +theme(axis.text.y = element_text(size = 12)) + xlab("Percentage") + ylab("") + ggtitle(2009) + xlim(0,0.35)
+
+#Then the images are combined with grid.arrange(), which need library(grid) and library(gridextra)
+
+```
+![alt text](https://raw.githubusercontent.com/Wenlong-Y/trump_tweets/master/words_year.png)
 

@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(lubridate)
 library(tidyr)
+library(tidytext)
 
 url <- 'http://www.trumptwitterarchive.com/data/realdonaldtrump/%s.json'
 all_tweets <- map(2009:2019, ~sprintf(url, .x)) %>%
@@ -34,7 +35,33 @@ full_join(yearsource,year)
 
 yearsourcepercentage <- full_join(yearsource,year) %>% mutate(npercentage = n/nyear)
 
+yearsourcepercentage %>% ggplot(aes(year,npercentage,color=as.character(source)))+geom_line(aes(year,npercentage))+geom_point() + scale_x_continuous(breaks=seq(2009,2019,2)) + ggtitle("Fig. 3. Trump tweeting device by year") + labs(color="Device") + ylab("Percentage") + xlab("Year")
 
+
+pattern <- "([^A-Za-z\\d#@']|'(?![A-Za-z\\d#@]))"
+
+ttwords <- ttweets %>% 
+  mutate(text = str_replace_all(text, "https://t.co/[A-Za-z\\d]+|&amp;", ""))  %>%
+  unnest_tokens(word, text, token = "regex", pattern = pattern) %>%
+  filter(!word %in% stop_words$word & !word %in% c("http","rt", "@realdonaldtrump", "tinyurl", "pqpfvm", "www") & !str_detect(word, "^\\d+$")) %>%
+  mutate(word = str_replace(word, "^'", "")) 
+
+ttyearword <- ttwords %>% group_by(year,word) %>% summarize(n=n()) %>% arrange(desc(n), .by_group= TRUE) 
+
+ttyearwordtop <- ttyearword %>% top_n(10)
+
+ttyeartop <- ttyearwordtop %>% summarize(nword = sum(n))
+
+ttyearwordtop %>% summarize(nword = sum(n))
+
+ttyearwordper <- full_join(ttyearwordtop,ttyeartop) %>% mutate(nper = n / nword)
+
+saveGIF({
+for(y in 2009:2019) {
+  pic <- ttplot %>% filter(year == y) %>% ggplot(aes(nper, reorder(word,nper)), subset(year)) + geom_point(color="blue", size=2) +theme(axis.text.y = element_text(size = 12)) + xlab("Percentage") + ylab("") + ggtitle(paste("Fig. 4. Most common words used in Trump's tweets for", y))
+  pic
+  }
+})
 
 #in the unix shell at the project directory 
 #echo "# Analyze tweet behavior of Donal Trump and the fav/retweet behaviors " >> README.md
