@@ -5,32 +5,25 @@ Wenlong Yang
 
 ## Introduction
 
-In this report, I analyzed the tweet habit and what we can learn about
-the president from these tweets.
+In this report, I analyzed the tweeting habit of Donald Trump and what
+we can learn about the president from these tweets.
 
 The data was downloaded from a
 [website](http://http://www.trumptwitterarchive.com/data/realdonaldtrump/)
-created by Brendan Brown.
+created by Brendan Brown. I extracted all of Trump’s tweets from 2009 to
+Nov. 3rd 2019 as the total data. The size of the data is about 9 Mb.
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
+## The devices
 
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+First of all, let us take a look at the devices Trump use to send
+tweets. We will look at the statistics for the whole time between 2009
+to 2019.
 
-``` r
-summary(cars)
-```
+![](report-markdown_files/figure-gfm/trump%20tweet%20devices-1.png)<!-- -->
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+Now, let us check the number of tweets by year.
+
+![](report-markdown_files/figure-gfm/trump%20tweet%20by%20year-1.png)<!-- -->
 
 ## Including Plots
 

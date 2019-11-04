@@ -2,8 +2,6 @@ library(tidyverse)
 library(ggplot2)
 library(lubridate)
 library(tidyr)
-library(scales)
-
 
 url <- 'http://www.trumptwitterarchive.com/data/realdonaldtrump/%s.json'
 all_tweets <- map(2009:2019, ~sprintf(url, .x)) %>%
@@ -15,6 +13,9 @@ all_tweets <- map(2009:2019, ~sprintf(url, .x)) %>%
 all_tweets%>%head()
 
 write.csv(all_tweets, "trump_tweets_20191103.csv")
+
+all_tweets <- as_tibble(read.csv("trump_tweets_20191103.csv", stringsAsFactors=FALSE))
+
 
 #in the unix shell at the project directory 
 #echo "# Analyze tweet behavior of Donal Trump and the fav/retweet behaviors " >> README.md
