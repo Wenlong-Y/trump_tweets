@@ -3,7 +3,14 @@ Trump Tweet Habit Analysis
 Wenlong Yang
 11/3/2019
 
-## R Markdown
+## Introduction
+
+In this report, I analyzed the tweet habit and what we can learn about
+the president from these tweets.
+
+The data was downloaded from a
+[website](http://http://www.trumptwitterarchive.com/data/realdonaldtrump/)
+created by Brendan Brown.
 
 This is an R Markdown document. Markdown is a simple formatting syntax
 for authoring HTML, PDF, and MS Word documents. For more details on
